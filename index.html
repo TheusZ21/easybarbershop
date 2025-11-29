@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Easy Corte — Cliente</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div></div>
+      <a class="login-link" href="login.html">Login</a>
+    </div>
+  </header>
+
+  <main class="container main">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="Easy Corte" class="logo" />
+    </div>
+
+    <section class="card accordion" id="servicosCard">
+      <button class="accordion-toggle" id="accordionBtn" aria-expanded="false">
+        Agenda Samuel <span class="chev">▾</span>
+      </button>
+
+      <div class="accordion-panel" id="accordionPanel" aria-hidden="true">
+        <table class="servicos" id="servicosTable">
+          <thead><tr><th>Serviço</th><th>Preço</th><th>Duração</th></tr></thead>
+          <tbody>
+            <tr data-servico="Corte" data-preco="45" data-duracao="1h">
+              <td class="s-name">Corte</td>
+              <td class="s-price">R$ 45</td>
+              <td class="s-duration">1h</td>
+            </tr>
+            <tr data-servico="Sobrancelha" data-preco="10" data-duracao="15min">
+              <td class="s-name">Sobrancelha</td>
+              <td class="s-price">R$ 10</td>
+              <td class="s-duration">15 min</td>
+            </tr>
+            <tr data-servico="Corte + Sobrancelha" data-preco="55" data-duracao="1h15">
+              <td class="s-name">Corte + Sobrancelha</td>
+              <td class="s-price">R$ 55</td>
+              <td class="s-duration">1h 15min</td>
+            </tr>
+            <tr data-servico="Barba" data-preco="30" data-duracao="30min">
+              <td class="s-name">Barba</td>
+              <td class="s-price">R$ 30</td>
+              <td class="s-duration">30 min</td>
+            </tr>
+            <tr data-servico="Corte + Barba" data-preco="75" data-duracao="1h30">
+              <td class="s-name">Corte + Barba</td>
+              <td class="s-price">R$ 75</td>
+              <td class="s-duration">1h 30min</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="actions">
+          <button id="abrirAgendar" class="btn primary">Agendar Serviço</button>
+        </div>
+      </div>
+    </section>
+
+    <nav class="bottom-menu" aria-label="Menu">
+      <div class="bm-item bm-item-center" id="btnHistorico">Histórico</div>
+    </nav>
+  </main>
+
+  <!-- Modal: selecionar dia e horário e formulário -->
+  <div id="modal" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose">✕</button>
+
+      <div id="stepDays" class="step">
+        <h3 id="modalTitle">Escolha o dia</h3>
+        <p class="muted">Selecione o dia desejado:</p>
+
+        <div id="daysGrid" class="days-grid">
+          <!-- dias gerados por JS (sem domingos) -->
+        </div>
+
+        <div class="row buttons" style="margin-top:14px">
+          <button id="voltarDias" class="btn ghost">Fechar</button>
+        </div>
+      </div>
+
+      <div id="stepTimes" class="step" style="display:none">
+        <h3 id="timesTitle">Horários disponíveis</h3>
+        <p class="muted" id="selectedDayLabel">—</p>
+
+        <div id="timesGrid" class="times-grid">
+          <!-- horários gerados por JS -->
+        </div>
+
+        <div class="row buttons" style="margin-top:14px">
+          <button id="voltarTimes" class="btn ghost">Voltar</button>
+        </div>
+      </div>
+
+      <div id="stepForm" class="step" style="display:none">
+        <h3 id="formTitle">Finalizar Agendamento</h3>
+        <p class="muted chosen-info" id="chosenInfo">—</p>
+
+        <form id="formAgendamento" class="form">
+          <div class="row">
+            <input id="nome" name="nome" placeholder="Nome" required autocomplete="given-name" />
+            <input id="sobrenome" name="sobrenome" placeholder="Sobrenome" required autocomplete="family-name" />
+          </div>
+          <input id="telefone" name="telefone" placeholder="Telefone (apenas números)" required inputmode="tel" />
+          <div class="row buttons" style="margin-top:12px">
+            <button type="submit" class="btn primary">Confirmar</button>
+            <button type="button" id="cancelForm" class="btn ghost">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Histórico do Cliente -->
+  <div id="modalHistorico" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button class="modal-close" id="modalHistoricoClose">✕</button>
+
+      <div id="stepTelefone" class="step">
+        <h3>Meu Histórico</h3>
+        <p class="muted">Digite seu telefone para consultar seus agendamentos:</p>
+
+        <form id="formTelefoneHistorico" class="form">
+          <input id="telefoneHistorico" name="telefoneHistorico" placeholder="Telefone (apenas números)" required inputmode="tel" />
+          <div class="row buttons" style="margin-top:12px">
+            <button type="submit" class="btn primary">Consultar</button>
+            <button type="button" id="cancelTelefone" class="btn ghost">Fechar</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="stepHistoricoLista" class="step" style="display:none">
+        <h3 id="historicoNomeCliente">Meus Agendamentos</h3>
+        <p class="muted" id="historicoInfo">—</p>
+
+        <div style="max-height:400px;overflow-y:auto;margin-top:12px">
+          <table class="agenda" id="tabelaHistoricoCliente">
+            <thead><tr><th>Data</th><th>Horário</th><th>Serviço</th><th>Valor</th><th>Status</th></tr></thead>
+            <tbody>
+              <!-- preenchido por JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row buttons" style="margin-top:14px">
+          <button id="voltarTelefone" class="btn ghost">Voltar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
