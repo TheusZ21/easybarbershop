@@ -1,3 +1,5 @@
+<?php require_once('Config/Helpers.php'); ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -71,7 +73,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark py-3">
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="<?= base_url('') ?>">
+        <a class="navbar-brand fw-bold" href="<?php echo base_url(); ?>">
             <i class="bi bi-scissors"></i> Easy Barber
         </a>
 
@@ -96,7 +98,7 @@
                 </li>
 
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                    <a href="<?= base_url('login') ?>" class="btn btn-gold px-4">
+                    <a href="<?php echo base_url('login'); ?>" class="btn btn-gold px-4">
                         Entrar
                     </a>
                 </li>
@@ -125,11 +127,11 @@
 
                 <div class="mt-4 d-flex gap-3 flex-wrap">
 
-                    <a href="<?= base_url('usuarios/new') ?>" class="btn btn-gold btn-lg px-4">
+                    <a href="<?php echo base_url('usuarios/new'); ?>" class="btn btn-gold btn-lg px-4">
                         Criar Conta
                     </a>
 
-                    <a href="<?= base_url('login') ?>" class="btn btn-outline-light btn-lg px-4">
+                    <a href="<?php echo base_url('login'); ?>" class="btn btn-outline-light btn-lg px-4">
                         Fazer Login
                     </a>
 
@@ -271,7 +273,7 @@
     <div class="container">
 
         <p class="mb-0 text-light-emphasis">
-            © <?= date('Y'); ?> Easy Barber - Todos os direitos reservados.
+            © <?php echo date('Y'); ?> Easy Barber - Todos os direitos reservados.
         </p>
 
     </div>
