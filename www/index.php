@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easy Barber</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <style>
@@ -70,11 +68,10 @@
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark py-3">
     <div class="container">
 
-        <a class="navbar-brand fw-bold" href="#">
+        <a class="navbar-brand fw-bold" href="<?= base_url('') ?>">
             <i class="bi bi-scissors"></i> Easy Barber
         </a>
 
@@ -99,7 +96,7 @@
                 </li>
 
                 <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                    <a href="login.php" class="btn btn-gold px-4">
+                    <a href="<?= base_url('login') ?>" class="btn btn-gold px-4">
                         Entrar
                     </a>
                 </li>
@@ -111,7 +108,6 @@
     </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
     <div class="container">
 
@@ -129,11 +125,11 @@
 
                 <div class="mt-4 d-flex gap-3 flex-wrap">
 
-                    <a href="cadastro.php" class="btn btn-gold btn-lg px-4">
+                    <a href="<?= base_url('usuarios/new') ?>" class="btn btn-gold btn-lg px-4">
                         Criar Conta
                     </a>
 
-                    <a href="login.php" class="btn btn-outline-light btn-lg px-4">
+                    <a href="<?= base_url('login') ?>" class="btn btn-outline-light btn-lg px-4">
                         Fazer Login
                     </a>
 
@@ -145,7 +141,6 @@
     </div>
 </section>
 
-<!-- SERVIÇOS -->
 <section class="py-5" id="servicos">
 
     <div class="container">
@@ -204,7 +199,6 @@
 
 </section>
 
-<!-- SOBRE -->
 <section class="py-5 bg-dark" id="sobre">
 
     <div class="container">
@@ -245,7 +239,6 @@
 
 </section>
 
-<!-- CONTATO -->
 <section class="py-5" id="contato">
 
     <div class="container text-center">
@@ -273,13 +266,12 @@
 
 </section>
 
-<!-- FOOTER -->
 <footer class="py-4 text-center">
 
     <div class="container">
 
         <p class="mb-0 text-light-emphasis">
-            © <?php echo date('Y'); ?> Easy Barber - Todos os direitos reservados.
+            © <?= date('Y'); ?> Easy Barber - Todos os direitos reservados.
         </p>
 
     </div>
@@ -287,5 +279,6 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
